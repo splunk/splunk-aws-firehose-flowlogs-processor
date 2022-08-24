@@ -1,0 +1,44 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  splunk-firehose-flowlogs-processor
+  Data transformation function to stream VPC Flowlogs to Splunk via Firehose
+Globals:
+  Function:
+    Timeout: 180
+Metadata:
+  AWS::ServerlessRepo::Application:
+    Name: splunk-firehose-flowlogs-processor
+    Description: Data transformation function to stream VPC Flowlogs to Splunk via Firehose
+    Author: Splunk
+    SpdxLicenseId: MIT
+    LicenseUrl: LICENSE
+    ReadmeUrl: README.md
+    Labels:
+    - splunk-firehose-flowlogs-processor
+    SemanticVersion: '0.0.1'
+    SourceCodeUrl: TBD
+Resources:
+  SplunkFirehoseFlowlogsProcessor:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: SplunkFirehoseFlowlogsProcessor
+      Handler: app.lambda_handler
+      Runtime: python3.8
+      Architectures:
+      - x86_64
+      Timeout: 90
+      MemorySize: 128
+Outputs:
+  SplunkFirehoseFlowlogsProcessor:
+    Description: Splunk Firehose VPC FlowLogs function ARN
+    Value:
+      Fn::GetAtt:
+      - SplunkFirehoseFlowlogsProcessor
+      - Arn
+  SplunkFirehoseFlowlogsProcessorRole:
+    Description: Implicit IAM Role created for Splunk Firehose VPC FlowLogs function
+    Value:
+      Fn::GetAtt:
+      - SplunkFirehoseFlowlogsProcessor
+      - Arn
