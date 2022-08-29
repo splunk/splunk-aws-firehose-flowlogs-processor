@@ -17,7 +17,7 @@ Metadata:
     Labels:
     - splunk-firehose-flowlogs-processor
     SemanticVersion: '0.0.1'
-    SourceCodeUrl: TBD
+    SourceCodeUrl: https://github.com/splunk/splunk-aws-firehose-flowlogs-processor
 Resources:
   SplunkFirehoseFlowlogsProcessor:
     Type: AWS::Serverless::Function
